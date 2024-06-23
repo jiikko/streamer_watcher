@@ -8,12 +8,12 @@ class Streamer < ApplicationRecord
   end
 
   def action_if_streaming
-    streaming = fetch_streaming
-    return unless streaming.streaming?
+    fetched_streaming = fetch_streaming
+    return unless fetched_streaming.streaming?
 
-    streamings.find_or_create_by!(unique_key: streaming.unique_key) do |s|
-      s.start_at = streaming.start_at
-      s.title = streaming.title
+    streamings.find_or_create_by!(unique_key: fetched_streaming.unique_key) do |s|
+      s.start_at = fetched_streaming.start_at
+      s.title = fetched_streaming.title
     end
   end
 
