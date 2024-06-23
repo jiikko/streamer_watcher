@@ -26,13 +26,14 @@
   </table>
 <% end %>
 
-<h1>ライブ配信一覧</h1>
+<h1>取得したライブ配信一覧</h1>
 
 <table border="1">
   <tr>
     <th>title</th>
     <th>開始日時</th>
     <th>download URL</th>
+    <th>ステータス</th>
     <th></th>
   </tr>
 
@@ -45,6 +46,7 @@
           <%= link_to 'ダウンロード', rails_blob_url(streaming.movie, disposition: 'attachment') %>
         <% end %>
       </td>
+      <td><%= streaming.status %></td>
       <td><%= link_to '削除する', streaming_path(streaming), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
