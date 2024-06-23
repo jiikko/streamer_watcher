@@ -16,6 +16,7 @@ gem 'bootsnap', require: false
 group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'foreman'
 end
 
 group :development do
