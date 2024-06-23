@@ -16,5 +16,5 @@ Rails.application.routes.draw do
     resources :streamers
   end
 
-  resources :streaming, only: %i[destroy]
+  resources :streamings, only: %i[destroy]
 end

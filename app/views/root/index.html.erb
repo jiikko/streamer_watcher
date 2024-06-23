@@ -45,7 +45,7 @@
           <%= link_to 'ダウンロード', rails_blob_url(streaming.movie, disposition: 'attachment') %>
         <% end %>
       </td>
-      <td><%= link_to '削除する', nil %></td>
+      <td><%= link_to '削除する', streaming_path(streaming), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>

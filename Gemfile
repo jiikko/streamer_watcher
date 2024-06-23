@@ -12,6 +12,7 @@ gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'trilogy'
 gem 'turbo-rails'
+gem 'importmap-rails'
 
 group :development, :test do
   gem 'foreman'
