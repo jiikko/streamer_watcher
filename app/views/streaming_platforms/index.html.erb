@@ -1,0 +1,20 @@
+<h1>一覧</h1>
+
+<table border="1">
+  <tr>
+    <th>name</th>
+    <th></th>
+  </tr>
+  <% @streaming_platforms.each do |streaming_platform| %>
+    <tr>
+      <td><%= link_to streaming_platform.name, nil %></td>
+      <td>
+        <% if streamer = @streamers_by_platform_id[streaming_platform.id] %>
+          <%= link_to '編集', edit_talent_streamer_path(@talent, streamer) %>
+        <% else %>
+          未登録
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table

@@ -1,0 +1,12 @@
+<h1>talents#index</h1>
+
+<table border="1">
+  <tr>
+    <th>name</th>
+    </tr>
+  <tr>
+    <% @talents.each do |talent| %>
+      <td><%= link_to talent.name, talent_streaming_platforms_path(talent) %></td>
+    <% end %>
+  </tr>
+</table

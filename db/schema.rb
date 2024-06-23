@@ -15,6 +15,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_035357) do
     t.bigint "talent_id", null: false
     t.bigint "streaming_platform_id", null: false
     t.string "streamer_key", null: false
+    t.boolean "notify", default: false, null: false
+    t.boolean "download_live_stream", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

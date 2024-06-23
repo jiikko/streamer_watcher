@@ -7,4 +7,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :talents do
+    resources :streaming_platforms
+    resources :streamers
+  end
 end
