@@ -5,7 +5,7 @@ class PoolingLiveStreamingWorker
 
   def perform
     Streamer
-      .preload(:streaming_platform)
+      .eager_load(:streaming_platform)
       .where('notify = true or download_live_stream = true').find_each(&:action_if_streaming)
   end
 end

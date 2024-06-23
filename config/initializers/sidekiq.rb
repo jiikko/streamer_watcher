@@ -4,6 +4,10 @@ Sidekiq.configure_server do |config|
   config.logger.level = Rails.logger.level
   config.on(:startup) do
     Rails.logger = Sidekiq.logger
+
+    if !ENV.fetch('IS_SCHEDULER', false)
+      Sidekiq.schedule = {}
+    end
   end
 
   config.redis = redis_config
