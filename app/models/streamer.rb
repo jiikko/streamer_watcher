@@ -16,4 +16,7 @@ class Streamer < ApplicationRecord
   def get_streaming
     DescribeStreaming.new(url).execute # TODO: twitcastのみに対応
   end
+
+  def notify
+  end
 end
