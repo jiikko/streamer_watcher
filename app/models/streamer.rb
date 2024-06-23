@@ -7,11 +7,13 @@ class Streamer < ApplicationRecord
   end
 
   def notify_and_download_if_streaming
-    if streaming?
-      notify
-    end
+    return unless (streaming = get_streaming) && streaming.streaming?
+
+    notify
+    # download
   end
 
-  def streaming?
+  def get_streaming
+    DescribeStreaming.new(url).execute # TODO: twitcastのみに対応
   end
 end
