@@ -41,6 +41,10 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  logger           = ActiveSupport::Logger.new("#{Rails.root}/log/development.log", 1, 1024 * 1024 * 5)
+  logger.formatter = config.log_formatter
+  config.logger    = ActiveSupport::TaggedLogging.new(logger)
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
