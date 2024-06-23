@@ -10,6 +10,27 @@
   </head>
 
   <body>
+  <% flash.each do |key, message| %>
+      <div class="flash <%= key %>"><%= message %></div>
+    <% end %>
+
     <%= yield %>
   </body>
+  <style>
+.flash {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.flash.notice {
+  background-color: #e0f7fa;
+  color: #00796b;
+}
+
+.flash.alert {
+  background-color: #ffebee;
+  color: #c62828;
+}
+  </style>
 </html>

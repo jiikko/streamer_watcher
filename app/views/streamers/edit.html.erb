@@ -1,1 +1,22 @@
 <h1>ストリーマー設定</h1>
+
+<%= form_with model: [@talent, @streamer], local: true do |form| %>
+  <div class="field">
+    <%= form.label :streamer_key, "Streamer Key" %>
+    <%= form.text_field :streamer_key %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notify, "通知" %>
+    <%= form.check_box :notify %>
+  </div>
+
+  <div class="field">
+    <%= form.label :download_live_stream, "Download Live Stream" %>
+    <%= form.check_box :download_live_stream %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

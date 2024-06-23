@@ -7,7 +7,7 @@
   </tr>
   <% @streaming_platforms.each do |streaming_platform| %>
     <tr>
-      <td><%= link_to streaming_platform.name, nil %></td>
+      <td><%= streaming_platform.name %></td>
       <td>
         <% if streamer = @streamers_by_platform_id[streaming_platform.id] %>
           <%= link_to '編集', edit_talent_streamer_path(@talent, streamer) %>
