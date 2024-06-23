@@ -16,7 +16,7 @@
         </td>
         <td>
           <ul>
-            <li>url: <%= link_to '配信URL', streamer.url if streamer.streamer_key.present? %></li>
+            <li>url: <%= link_to streamer.streamer_key, streamer.url if streamer.streamer_key.present? %></li>
             <li>notify: <%= streamer.notify ? 'ON' : 'OFF' %></li>
             <li>download_live_stream: <%= streamer.download_live_stream ? 'ON' : 'OFF' %></li>
           </ul>
@@ -26,5 +26,20 @@
   </table>
 <% end %>
 
-<h1>ダウンロードしたライブ配信</h1>
-TODO
+<h1>ライブ配信一覧</h1>
+
+<table border="1">
+  <tr>
+    <th>title</th>
+    <th>開始日時</th>
+    <th>download URL</th>
+  </tr>
+
+  <% @streamings.each do |live_stream| %>
+    <tr>
+      <td><%= live_stream.title %></td>
+      <td><%= live_stream.start_at %></td>
+      <td><%= link_to '配信URL', nil %></td>
+    </tr>
+  <% end %>
+</table>

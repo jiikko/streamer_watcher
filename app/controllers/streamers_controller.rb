@@ -8,7 +8,7 @@ class StreamersController < ApplicationController
     @talent = Talent.find(params[:talent_id])
     @streamer = @talent.streamers.find(params[:id])
     if @streamer.update(streamer_params)
-      redirect_to talent_streaming_platforms_path(@talent), notice: 'Streamer was successfully updated.'
+      redirect_to root_path, notice: 'Streamer was successfully updated.'
     else
       render :edit
     end

@@ -1,5 +1,6 @@
 require 'open3'
 
+# NOTE: twitcastのみに対応
 class DescribeStreaming
   class NotLiveResult
     def streaming?
@@ -14,6 +15,18 @@ class DescribeStreaming
 
     def streaming?
       @json['is_live']
+    end
+
+    def start_at
+      Time.at(@json['epoch'])
+    end
+
+    def title
+      @json['title']
+    end
+
+    def unique_key
+      @json['id']
     end
   end
 
