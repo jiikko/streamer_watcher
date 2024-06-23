@@ -30,9 +30,10 @@
 
 <table border="1">
   <tr>
-    <th>title</th>
+    <th>タイトル</th>
     <th>開始日時</th>
-    <th>download URL</th>
+    <th>ストリーマー</th>
+    <th></th>
     <th>ステータス</th>
     <th></th>
   </tr>
@@ -41,6 +42,7 @@
     <tr>
       <td><%= streaming.title %></td>
       <td><%= streaming.start_at %></td>
+      <td><%= streaming.streamer.talent.name %></td>
       <td>
         <% if streaming.movie.attached? %>
           <%= link_to 'ダウンロード', rails_blob_url(streaming.movie, disposition: 'attachment') %>
