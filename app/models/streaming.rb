@@ -5,8 +5,9 @@ class Streaming < ApplicationRecord
 
   after_create :notify_to_slack, :enqueue_download_streaming
 
-  def download_movie
-    DownloadStreaming.new(streamer.url).execute do |movie_path|
+  def download_movie(url: nil)
+    url ||= streamer.url
+    DownloadStreaming.new(url).execute do |movie_path|
       movie.attach(io: File.open(movie_path), filename: File.basename(movie_path))
     end
   end
