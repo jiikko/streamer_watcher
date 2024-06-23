@@ -18,7 +18,7 @@
           <ul>
             <li>url: <%= link_to streamer.streamer_key, streamer.url if streamer.streamer_key.present? %></li>
             <li>notify: <%= streamer.notify ? 'ON' : 'OFF' %></li>
-            <li>download_live_stream: <%= streamer.download_live_stream ? 'ON' : 'OFF' %></li>
+            <li>download_streaming: <%= streamer.download_live_stream ? 'ON' : 'OFF' %></li>
           </ul>
         </td>
       </tr>
@@ -33,13 +33,19 @@
     <th>title</th>
     <th>開始日時</th>
     <th>download URL</th>
+    <th></th>
   </tr>
 
-  <% @streamings.each do |live_stream| %>
+  <% @streamings.each do |streaming| %>
     <tr>
-      <td><%= live_stream.title %></td>
-      <td><%= live_stream.start_at %></td>
-      <td><%= link_to '配信URL', nil %></td>
+      <td><%= streaming.title %></td>
+      <td><%= streaming.start_at %></td>
+      <td>
+        <% if streaming.movie.attached? %>
+          <%= link_to 'ダウンロード', rails_blob_url(streaming.movie, disposition: 'attachment') %>
+        <% end %>
+      </td>
+      <td><%= link_to '削除する', nil %></td>
     </tr>
   <% end %>
 </table>

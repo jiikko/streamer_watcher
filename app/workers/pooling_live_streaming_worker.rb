@@ -4,7 +4,8 @@ class PoolingLiveStreamingWorker
   sidekiq_options queue: 'pooling', retry: 0
 
   def perform
-    Rails.logger.info 'Pooling live streaming'
-    Streamer.where('notify = true or download_live_stream = true').find_each(&:action_if_streaming)
+    Streamer
+      .preload(:streaming_platform)
+      .where('notify = true or download_live_stream = true').find_each(&:action_if_streaming)
   end
 end
