@@ -1,0 +1,12 @@
+concurrency: 5
+
+:queues:
+  - "pooling"
+  - "download"
+
+scheduler:
+  enabled: true
+  schedule:
+    pooling_live_streaming:
+      cron: "* * * * *"
+      class: PoolingLiveStreaming

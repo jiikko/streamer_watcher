@@ -10,7 +10,7 @@ gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'trilogy'
 gem 'turbo-rails'
-
+gem 'sidekiq-scheduler'
 gem 'bootsnap', require: false
 
 group :development, :test do
