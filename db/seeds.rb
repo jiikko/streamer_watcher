@@ -7,3 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+StreamPlatform.find_or_create_by!(name: 'youtube', url: 'https://www.youtube.com')
+StreamPlatform.find_or_create_by!(name: 'twitcast', url: 'https://twitcasting.tv')
