@@ -12,6 +12,9 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 
+require 'open3'
+require 'pty'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)

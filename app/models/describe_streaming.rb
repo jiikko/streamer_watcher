@@ -1,5 +1,3 @@
-require 'open3'
-
 # NOTE: twitcastのみに対応
 class DescribeStreaming
   class NotLiveResult
@@ -38,11 +36,16 @@ class DescribeStreaming
     file_name_part = @url.match(%r{/([^/]+?)$})[1].gsub(':', '-')
     command = "yt-dlp \"#{@url}\" --skip-download --write-info-json -o '#{Rails.root}/tmp/live-stream#{file_name_part}'"
     Rails.logger.info "[SHELL] #{command}"
-    _stdout, stderr, status = Open3.capture3(command)
-    return NotLiveResult.new if stderr.include?('The channel is not currently live') || !status.success?
+
+    stdout, _stdin, pid = PTY.spawn(command)
+    Rails.logger.info stdout.map(&:itself).join
+    _, status = Process.wait2(pid)
+    return NotLiveResult.new unless status.success?
 
     json = JSON.parse(File.read("#{Rails.root}/tmp/live-stream#{file_name_part}.info.json"))
     FileUtils.rm_f("#{Rails.root}/tmp/live-stream#{file_name_part}.info.json")
     Result.new(json)
+  rescue Errno::EIO => e
+    Rails.logger.error "Error: #{e}"
   end
 end
