@@ -8,20 +8,19 @@ class DownloadStreaming
   def execute
     Rails.logger.info "Downloading streaming: #{@url}"
     file_name_part = @url.match(%r{/([^/]+?)$})[1]
-    command = "yt-dlp \"#{@url}\" -o '#{Rails.root}/tmp/live-stream#{file_name_part}.mp4'"
-    Rails.logger.info "[SHELL] #{command}"
-    _stdout, stderr, _status = Open3.capture3(command)
-    raise DownloadError, "Failed to download streaming: #{stderr}" unless _status.success?
+    output_path = "#{Rails.root}/tmp/live-stream#{file_name_part}.mp4"
+    command = "yt-dlp \"#{@url}\" -o '#{output_path}'"
+    raise DownloadError, "Failed to download streaming" unless ShellRunner.run(command)
 
-    movie_path = "#{Rails.root}/tmp/live-stream#{file_name_part}.mp4"
     if block_given?
-      yield movie_path
-      FileUtils.rm_f(movie_path)
+      yield output_path
+      FileUtils.rm_f(output_path)
     else
-      Rails.logger.info "you need to remove #{movie_path} manually!"
+      Rails.logger.warn "you need to remove #{output_path} manually!"
     end
 
-    Rails.logger.info "Downloaded streaming: #{movie_path}"
-    movie_path
+    Rails.logger.info "Downloaded streaming: #{output_path}"
+
+    output_path
   end
 end
