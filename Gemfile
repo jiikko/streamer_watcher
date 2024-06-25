@@ -6,13 +6,15 @@ ruby '3.2.2'
 gem 'rails', '7.1.3.4'
 
 gem 'bootsnap', require: false
+gem 'importmap-rails'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'trilogy'
 gem 'turbo-rails'
-gem 'importmap-rails'
+gem 'simple_oauth'
+gem 'http'
 
 group :development, :test do
   gem 'foreman'

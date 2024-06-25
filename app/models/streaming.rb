@@ -5,7 +5,7 @@ class Streaming < ApplicationRecord
 
   enum status: { pending: 0, downloading: 5, downloaded: 10, error: 20 }
 
-  after_create :notify_to_slack
+  after_create :notify
   after_commit :enqueue_download_streaming, on: :create, if: -> { streamer.download_live_stream }
 
   def download_movie(url: nil)
@@ -17,13 +17,21 @@ class Streaming < ApplicationRecord
 
   private
 
-  def notify_to_slack
-    # notify to slack
+  def notify
+    return unless streamer.notify
 
+    Notification::Twitter.send(notification_message)
     update!(notified: true)
   end
 
   def enqueue_download_streaming
     DownloadStreamingWorker.perform_async(id)
+  end
+
+  def notification_message
+    <<~TEXT.chomp
+      #{streamer.talent.name}の配信が#{streamer.streaming_platform.name}で開始されました!
+      #{streamer.url}
+    TEXT
   end
 end
