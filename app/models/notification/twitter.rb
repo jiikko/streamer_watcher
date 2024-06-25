@@ -14,6 +14,8 @@ class Notification::Twitter
                                      token_secret: ENV.fetch('TWITTER_ACCESS_TOKEN_SECRET', nil)
                                    }))
     client.post(POST_TWEET_ENDPOINT, headers: HEADERS, json: { text: })
+  rescue StandardError => e
+    Rails.logger.error(e)
   end
 
   # OAuth1.0aで Authentication ヘッダのシグネチャを生成します。これにSimpleOAuthを利用
