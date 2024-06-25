@@ -6,7 +6,7 @@ class Streaming < ApplicationRecord
   enum status: { pending: 0, downloading: 5, downloaded: 10, error: 20 }
 
   after_create :notify_to_slack
-  after_create :enqueue_download_streaming, if: -> { streamer.download_live_stream }
+  after_commit :enqueue_download_streaming, on: :create, if: -> { streamer.download_live_stream }
 
   def download_movie(url: nil)
     url ||= streamer.url
