@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :talents do
     resources :streaming_platforms
-    resources :streamers
+    resources :streamers, only: %i[new create edit update destroy]
   end
 
   resources :streamings, only: %i[destroy]

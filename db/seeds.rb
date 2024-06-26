@@ -9,4 +9,4 @@
 #   end
 
 StreamingPlatform.find_or_create_by!(name: 'youtube', url: 'https://www.youtube.com')
-StreamingPlatform.find_or_create_by!(name: 'twitcast', url: 'https://twitcasting.tv')
+StreamingPlatform.find_or_create_by!(name: 'twitcasting', url: 'https://twitcasting.tv')

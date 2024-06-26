@@ -1,6 +1,7 @@
 <h1>登録しているストリーマー</h1>
 <% @streamers.each do |talent, streamers| %>
   <h2><%= talent.name %></h2>
+  <%= link_to '配信サイトを追加する', new_talent_streamer_path(talent) %>
 
   <table border="1">
     <tr>

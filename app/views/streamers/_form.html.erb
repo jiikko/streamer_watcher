@@ -1,0 +1,40 @@
+<%= form_with model: [talent, streamer], local: true do |form| %>
+  <% if form.object.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(form.object.errors.count, "error") %> prohibited this streamer from being saved:</h2>
+      <ul>
+        <% @streamer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :streaming_platform_id, "ストリームプラットフォーム" %>
+    <% if streamer.new_record? %>
+    <%= form.select :streaming_platform_id, available_streaming_platforms.map { |sp| [sp.name, sp.id] } %>
+    <% else %>
+      <%= form.object.streaming_platform.name %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :streamer_key, "Streamer Key" %>
+    <%= form.text_field :streamer_key %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notify, "通知" %>
+    <%= form.check_box :notify %>
+  </div>
+
+  <div class="field">
+    <%= form.label :download_live_stream, "Download Live Stream" %>
+    <%= form.check_box :download_live_stream %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
