@@ -30,7 +30,7 @@ class Streaming < ApplicationRecord
 
   def notification_message
     <<~TEXT.chomp
-      #{streamer.talent.name}の配信が#{streamer.streaming_platform.name}で開始されました!
+      #{streamer.talent.name}の配信が#{streamer.streaming_platform.name}で開始しました!
       #{streamer.url}
     TEXT
   end
