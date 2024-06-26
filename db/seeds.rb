@@ -8,5 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-StreamingPlatform.find_or_create_by!(name: 'youtube', url: 'https://www.youtube.com')
-StreamingPlatform.find_or_create_by!(name: 'twitcasting', url: 'https://twitcasting.tv')
+StreamingPlatform.find_or_create_by!(name: 'youtube', url: 'https://www.youtube.com',
+                                     type: 'StreamingPlatform::TwitcastingPlatform')
+StreamingPlatform.find_or_create_by!(name: 'twitcasting', url: 'https://twitcasting.tv',
+                                     type: 'StreamingPlatform::YoutubePlatform')

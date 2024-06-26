@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_080608) do
   create_table "streaming_platforms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "url", null: false
+    t.string "type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -62,8 +63,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_080608) do
     t.integer "streamer_id", null: false
     t.datetime "start_at", null: false
     t.boolean "notified", default: false, null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["streamer_id", "unique_key"], name: "index_streamings_on_streamer_id_and_unique_key", unique: true
   end
 
   create_table "talents", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
