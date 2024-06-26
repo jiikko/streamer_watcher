@@ -81,4 +81,9 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  config.x.twitter_api_key = ENV.fetch('TWITTER_API_KEY', nil)
+  config.x.twitter_api_secret = ENV.fetch('TWITTER_API_SECRET', nil)
+  config.x.twitter_access_token = ENV.fetch('TWITTER_ACCESS_TOKEN', nil)
+  config.x.twitter_access_token_secret = ENV.fetch('TWITTER_ACCESS_TOKEN_SECRET', nil)
 end
