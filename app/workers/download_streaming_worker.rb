@@ -9,8 +9,8 @@ class DownloadStreamingWorker
     begin
       streaming.downloading!
       streaming.download_movie
-      streaming.downloaded!
-    rescue DownloadStreaming::DownloadError => e
+      streaming.completed!
+    rescue StreamingPlatform::TwitcastingDownloadStreaming::DownloadError => e
       Rails.logger.error "Failed to download streaming: #{e.message}"
       streaming.error!
     end
