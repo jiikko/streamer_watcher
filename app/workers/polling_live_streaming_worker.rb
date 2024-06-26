@@ -1,7 +1,7 @@
-class PoolingLiveStreamingWorker
+class PollingLiveStreamingWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'pooling', retry: 0
+  sidekiq_options queue: 'polling', retry: 0
 
   def perform
     Streamer

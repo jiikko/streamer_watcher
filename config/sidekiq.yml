@@ -1,12 +1,12 @@
 concurrency: 5
 
 queues:
-  - pooling
+  - polling
   - download
 
 scheduler:
   enabled: true
   schedule:
-    pooling_live_streaming:
+    polling_live_streaming:
       cron: "* * * * *"
-      class: PoolingLiveStreamingWorker
+      class: PollingLiveStreamingWorker
