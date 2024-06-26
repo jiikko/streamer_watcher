@@ -29,6 +29,13 @@ class StreamersController < ApplicationController
     end
   end
 
+  def destroy
+    @talent = Talent.find(params[:talent_id])
+    @streamer = @talent.streamers.find(params[:id])
+    @streamer.destroy
+    redirect_to root_path, notice: 'Streamer was successfully destroyed.'
+  end
+
   private
 
   def streamer_params

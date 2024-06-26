@@ -1,3 +1,4 @@
 <h1><%= @talent.name %>のストリーマー編集</h1>
+<%= link_to '削除する', talent_streamer_path(@talent, @streamer), method: :delete, data: { confirm: '本当に削除しますか？' } %>
 
 <%= render 'form', talent: @talent, streamer: @streamer %>
