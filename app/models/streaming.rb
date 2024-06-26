@@ -10,7 +10,7 @@ class Streaming < ApplicationRecord
 
   def download_movie(url: nil)
     url ||= streamer.url
-    DownloadStreaming.new(url).execute do |movie_path|
+    streamer.streaming_platform.download_movie(url) do |movie_path|
       movie.attach(io: File.open(movie_path), filename: File.basename(movie_path))
     end
   end

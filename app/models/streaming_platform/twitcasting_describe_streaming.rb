@@ -1,5 +1,4 @@
-# NOTE: twitcastのみに対応
-class DescribeStreaming
+class StreamingPlatform::TwitcastingDescribeStreaming
   class NotLiveResult
     def streaming?
       false

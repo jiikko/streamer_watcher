@@ -1,4 +1,4 @@
-class DownloadStreaming
+class StreamingPlatform::TwitcastingDownloadStreaming
   class DownloadError < StandardError; end
 
   def initialize(url)
