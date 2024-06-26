@@ -3,7 +3,7 @@ class Streaming < ApplicationRecord
 
   has_one_attached :movie
 
-  enum status: { pending: 0, downloading: 5, downloaded: 10, error: 20 }
+  enum status: { pending: 0, downloading: 5, completed: 10, error: 20 }
 
   after_create :notify
   after_commit :enqueue_download_streaming, on: :create, if: -> { streamer.download_live_stream }
