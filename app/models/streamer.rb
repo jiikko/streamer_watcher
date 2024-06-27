@@ -3,6 +3,8 @@ class Streamer < ApplicationRecord
   belongs_to :streaming_platform
   has_many :streamings, dependent: :destroy
 
+  before_validation :normalize_streamer_key
+
   def url
     "#{streaming_platform.url}/#{streamer_key}"
   end
@@ -19,5 +21,11 @@ class Streamer < ApplicationRecord
 
     streaming.save!
     streaming.action_after_create
+  end
+
+  private
+
+  def normalize_streamer_key
+    self.streamer_key = streamer_key.remove(%r{/$}) if streamer_key.present?
   end
 end
